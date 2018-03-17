@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Mehmet Yazicioglu
+  description: Deploys Docker container engine
+  Company: none
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  - name: Fedora
+    versions:
+    - 23
+    - 24
+  galaxy_tags:
+  - web
+dependencies: []

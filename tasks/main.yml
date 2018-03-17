@@ -1,0 +1,26 @@
+---
+# tasks file for mehmet.docker
+- name: Set the initial value for the is_atomic fact
+  set_fact:
+    is_atomic: false
+
+- name: Determine if Atomic
+  stat: path=/run/ostree-booted
+  register: s
+  changed_when: false
+
+- name: Set the is_atomic fact
+  set_fact:
+    is_atomic: true
+  when: s.stat.exists
+
+- include: install.yml
+  when: not is_atomic
+
+- name: Restart and enable services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - docker
